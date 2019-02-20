@@ -82,7 +82,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //这样写参数可以 http://localhost:8080/user/login?username=admin&password=123456
                         formLogin()
                 .loginProcessingUrl("/user/login")
-                .failureForwardUrl("/test/error")
+//                .failureForwardUrl("/test/error") //这个没效果
                 .successHandler(authenticationSuccessHandler)
                 .failureHandler(authenticationFailHandler)
                 .and()
