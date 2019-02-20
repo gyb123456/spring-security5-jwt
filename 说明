@@ -1,5 +1,5 @@
 本项目是Spring security5+Jwt的基础实例，
-简书对项目简介：https://www.jianshu.com/p/fc56d965e3c3
+简书对此项目简介：https://www.jianshu.com/p/fc56d965e3c3
 功能：
     1：验证用户登录账号密码是否正确，登录地址可以自定义配置，密码验证规则也是自定义，我这里只要是123456就行，验证成功与失败分别有不同的类来处理，登录成功后生成JWT返回
     测试方法：http://localhost:8080/user/login?username=adm&password=123456
