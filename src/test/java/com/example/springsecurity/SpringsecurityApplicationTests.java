@@ -11,6 +11,7 @@ public class SpringsecurityApplicationTests {
 
     @Test
     public void contextLoads() {
+        System.out.println(0.1+0.2==0.3);
     }
 
 }

@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Spring security登录失败调用类
+ * Spring security登录失败处理类
+ *  * GYB
+ *  * 20190220
  */
 @Component
 public class MyAuthenticationFailHandler implements AuthenticationFailureHandler   {

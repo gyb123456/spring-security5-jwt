@@ -15,26 +15,35 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 
+/**
+ * Spring security的总配置类
+ *  * GYB
+ *  * 20190220
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     // Spring会自动寻找同样类型的具体类注入，这里就是JwtUserDetailsServiceImpl了
     @Autowired
     MyUserDetailsService userDetailsService;
-    //登录成功后调用的方法，如返回自定义jwt
+    //登录成功处理类，如返回自定义jwt
     @Autowired
     MyAuthenticationSuccessHandler authenticationSuccessHandler;
-    //登录成功后调用的方法
+    //登录失败处理类
     @Autowired
     MyAuthenticationFailHandler authenticationFailHandler;
+    //token 过滤器，解析token
     @Autowired
     MyJwtTokenFilter jwtTokenFilter;
+    //权限不足处理类
     @Autowired
     MyAccessDeniedHandler myAccessDeniedHandler;
+    //其他异常处理类
+    @Autowired
+    MyAuthenticationException myAuthenticationException;
 
     @Autowired
     public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
@@ -73,7 +82,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //这样写参数可以 http://localhost:8080/user/login?username=admin&password=123456
                         formLogin()
                 .loginProcessingUrl("/user/login")
-                .failureForwardUrl("/error/spring")
+                .failureForwardUrl("/test/error")
                 .successHandler(authenticationSuccessHandler)
                 .failureHandler(authenticationFailHandler)
                 .and()
@@ -104,7 +113,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // 添加JWT filter
         httpSecurity.addFilterBefore(jwtTokenFilter, LogoutFilter.class)
                 // 添加权限不足 filter
-                .exceptionHandling().accessDeniedHandler(myAccessDeniedHandler);
+                .exceptionHandling().accessDeniedHandler(myAccessDeniedHandler)
+                //其他异常处理类
+                .authenticationEntryPoint(myAuthenticationException);
 
     }
 }

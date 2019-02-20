@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 /**
- * Spring security登录成功调用类,返回jwt
+ * Spring security登录成功处理类,返回jwt
+ *  * GYB
+ *  * 20190220
  */
 @Component
 public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHandler {

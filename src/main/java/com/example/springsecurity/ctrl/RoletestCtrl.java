@@ -13,7 +13,18 @@ public class RoletestCtrl {
 
     @GetMapping("aaa")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public String login(){
-        return "sucess.........";
+    public String aaa(){
+        return "sucess.........aaa";
+    }
+
+    @GetMapping("bbb")
+    public String bbb(){
+        return "sucess.........bbb";
+    }
+
+    @GetMapping("ccc")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public String ccc(){
+        return "sucess.........ccc";
     }
 }

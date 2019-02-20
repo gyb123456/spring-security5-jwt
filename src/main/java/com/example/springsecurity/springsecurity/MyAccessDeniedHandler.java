@@ -11,8 +11,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Spring security权限不足调用类
- * 只有确实的访问失败才会进入AccessDeniedHandler，如果是未登陆或者会话超时等，不会触发AccessDeniedHandler，而是会直接跳转到登陆页面。
+ * Spring security权限不足处理类
+ * 只有登录后（即接口有传token）接口权限不足才会进入AccessDeniedHandler，
+ * 如果是未登陆或者会话超时等，不会触发AccessDeniedHandler，而是会直接跳转到登陆页面。
+ * GYB
+ * 20190220
  */
 @Component
 public class MyAccessDeniedHandler implements AccessDeniedHandler {
