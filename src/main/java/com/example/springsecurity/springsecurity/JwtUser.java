@@ -11,6 +11,7 @@ import java.util.List;
 public class JwtUser implements UserDetails {
     private String username;
     private String password;
+    //权限
     private Collection<? extends GrantedAuthority> authorities;
 
     JwtUser(String username, String password, List<GrantedAuthority> authorities){

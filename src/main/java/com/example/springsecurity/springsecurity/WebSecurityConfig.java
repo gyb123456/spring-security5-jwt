@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.logout.LogoutFilter;
 
 /**
  * Spring security的总配置类
+ * 配置密码验证规则、拦截的url、登录接口地址、登录成功与失败后的处理器、各种异常处理器
  *  * GYB
  *  * 20190220
  */
