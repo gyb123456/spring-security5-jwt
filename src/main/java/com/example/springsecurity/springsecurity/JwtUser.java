@@ -2,6 +2,7 @@ package com.example.springsecurity.springsecurity;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -46,5 +47,14 @@ public class JwtUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    //获得当前登陆用户对应的对象。
+    public static JwtUser getCurUser(){
+        JwtUser userDetails = (JwtUser) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal();
+        System.out.println("当前用户:"+userDetails);
+        return userDetails;
     }
 }

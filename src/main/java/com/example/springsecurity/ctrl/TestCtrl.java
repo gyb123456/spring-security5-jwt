@@ -1,5 +1,6 @@
 package com.example.springsecurity.ctrl;
 
+import com.example.springsecurity.springsecurity.JwtUser;
 import com.example.springsecurity.springsecurity.JwtUtils;
 import io.jsonwebtoken.Claims;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,10 @@ import java.io.PrintWriter;
 public class TestCtrl {
 
     @GetMapping("aaa")
-    public String login(){
+    public String aaa(){
+        //获取当前登录用户
+        JwtUser jwtUser  = JwtUser.getCurUser();
+        System.out.println(jwtUser);
         return "sucess.........";
     }
 

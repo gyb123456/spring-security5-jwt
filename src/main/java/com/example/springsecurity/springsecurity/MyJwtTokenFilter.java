@@ -46,9 +46,9 @@ public class MyJwtTokenFilter extends OncePerRequestFilter {
                 System.out.println("token过期" + authToken);
             }else{
                 System.out.println("token没过期，放行" + authToken);
-                //这里只要告诉springsecurity权限即可，账户密码就不用提供验证了
-//                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(UserDetails, null, UserDetails.getAuthorities());
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(null, null, UserDetails.getAuthorities());
+                //这里只要告诉springsecurity权限即可，账户密码就不用提供验证了，这里我们把UserDetails传给springsecurity，以便以后我们获取当前登录用户
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(UserDetails, null, UserDetails.getAuthorities());
+//                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(null, null, UserDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
                 logger.info(String.format("Authenticated userDetail %s, setting security context", username));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
